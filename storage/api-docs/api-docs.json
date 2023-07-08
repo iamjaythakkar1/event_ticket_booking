@@ -1,0 +1,388 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "LARAVEL Rest API DOCUMENTATION",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "jaythakkar381@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/admin/login": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Admin Login",
+                "operationId": "AdminLogin",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "admin_email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "admin_email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "admin@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login Success!"
+                    },
+                    "401": {
+                        "description": "Invalid Credentials"
+                    },
+                    "422": {
+                        "description": "Validation Error!"
+                    }
+                }
+            }
+        },
+        "/api/admin/apievent": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Admin Create Event",
+                "operationId": "adminevent",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "date",
+                                    "starttime",
+                                    "endtime",
+                                    "price",
+                                    "totalticket",
+                                    "address",
+                                    "city",
+                                    "state",
+                                    "pincode",
+                                    "category",
+                                    "image"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "minLength": 3
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-06-30"
+                                    },
+                                    "starttime": {
+                                        "type": "string",
+                                        "example": "10:00"
+                                    },
+                                    "endtime": {
+                                        "type": "string",
+                                        "example": "17:00"
+                                    },
+                                    "price": {
+                                        "type": "string"
+                                    },
+                                    "totalticket": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "state": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "pincode": {
+                                        "type": "integer"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Organiser Created!"
+                    },
+                    "401": {
+                        "description": "Invalid Credentials"
+                    },
+                    "422": {
+                        "description": "Validation Error!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/organisercreate": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Admin Create Organiser",
+                "operationId": "store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "organiser_name",
+                                    "organiser_email",
+                                    "organiser_description",
+                                    "phoneno"
+                                ],
+                                "properties": {
+                                    "organiser_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "organiser"
+                                    },
+                                    "organiser_email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "organiser@example.com"
+                                    },
+                                    "organiser_description": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "description"
+                                    },
+                                    "phoneno": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "9876543210"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Organiser Created!"
+                    },
+                    "401": {
+                        "description": "Invalid Credentials"
+                    },
+                    "422": {
+                        "description": "Validation Error!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/organiser/apievent": {
+            "post": {
+                "tags": [
+                    "Organiser"
+                ],
+                "summary": "Organiser Create Event",
+                "operationId": "organiserevent",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "date",
+                                    "starttime",
+                                    "endtime",
+                                    "price",
+                                    "totalticket",
+                                    "address",
+                                    "city",
+                                    "state",
+                                    "pincode",
+                                    "category",
+                                    "image"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "minLength": 3
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-06-30"
+                                    },
+                                    "starttime": {
+                                        "type": "string",
+                                        "example": "10:00"
+                                    },
+                                    "endtime": {
+                                        "type": "string",
+                                        "example": "17:00"
+                                    },
+                                    "price": {
+                                        "type": "string"
+                                    },
+                                    "totalticket": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "state": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "pincode": {
+                                        "type": "integer"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Organiser Created!"
+                    },
+                    "401": {
+                        "description": "Invalid Credentials"
+                    },
+                    "422": {
+                        "description": "Validation Error!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/organiser/login": {
+            "post": {
+                "tags": [
+                    "Organiser"
+                ],
+                "summary": "Organiser Login",
+                "operationId": "OrganiserLogin",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "organiser_email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "organiser_email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "organiser@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login Success!"
+                    },
+                    "401": {
+                        "description": "Invalid Credentials"
+                    },
+                    "422": {
+                        "description": "Validation Error!"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
